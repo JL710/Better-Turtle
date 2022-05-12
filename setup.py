@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
 	name='BetterTurtle',
-	version='0.0.2',
+	version='0.0.3',
 	description='A better turtle module for python. Uses turtle module to create a turtle object with additional functionality.',
 	long_description=long_description,
 	long_description_content_type="text/markdown",
