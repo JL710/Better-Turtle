@@ -29,6 +29,6 @@ The `BetterTurtle` class can get additional args. Theese are ` title: str="Bette
   * `active_control` is a bool that manages if the buttons work or not. This can be changed after creating the object
 
 ## `gui_input(type: str, title: str, prompt: str) -> (str | None)`
-Opens a small window where the user can do an input.
+Opens a small window where the user can do an input. Returns the input.
 ### type
 Can be `str`, `int` or `float`
