@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import messagebox
 import tkinter.ttk as ttk
 import turtle
 import threading
@@ -73,3 +74,60 @@ class BetterTurtle(tkinter.Tk):
 
     def tracer(self, number: int, *args):
         self.turtle._tracer(number)
+
+
+def gui_input(type: str, title: str, prompt: str) -> str | None:
+    class Gui:
+        def __init__(self, type, title, prompt):
+            self.__type = type
+            self.__value = None
+
+            # create rooot
+            self.__root = tkinter.Tk()
+            self.__root.title(title)
+
+            # config columns and rows
+            self.__root.columnconfigure(0, weight=1)
+            self.__root.columnconfigure(1, weight=1)
+            self.__root.rowconfigure(2, weight=1)
+
+            # create widgets
+            self.__label = ttk.Label(self.__root, text=prompt)
+            self.__entry = ttk.Entry(self.__root)
+            self.__entry.focus()
+            self.__submit = ttk.Button(self.__root, text="Confirm", command=self.on_submit)
+            self.__cancel = ttk.Button(self.__root, text="Calcel", command=self.on_cancel)
+
+            # grid widgets
+            self.__label.grid(column=0, row=0, columnspan=2, sticky="nsew", padx=5, pady=5)
+            self.__entry.grid(column=0, row=1, columnspan=2, sticky="nsew", padx=5, pady=5)
+            self.__submit.grid(column=0, row=2, sticky="nsew", padx=5, pady=5)
+            self.__cancel.grid(column=1, row=2 , sticky="nsew", padx=5, pady=5)
+
+        def on_cancel(self):
+            self.__root.destroy()
+            self.__value = None
+
+        def on_submit(self):
+            if self.__type == "str":
+                self.__value = self.__entry.get()
+                self.__root.destroy()
+            elif self.__type == "int":
+                try:
+                    self.__value = int(self.__entry.get())
+                    self.__root.destroy()
+                except ValueError:
+                    messagebox.showerror("Error", f'"{self.__entry.get()}" is not a integer.')
+            elif self.__type == "float":
+                try:
+                    self.__value = float(self.__entry.get())
+                    self.__root.destroy()
+                except ValueError:
+                    messagebox.showerror("Error", f'"{self.__entry.get()}" is not a float.')
+
+        def run(self):
+            self.__root.mainloop()
+            return self.__value
+
+    gui = Gui(type, title, prompt)
+    return gui.run()

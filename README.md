@@ -27,3 +27,8 @@ The `BetterTurtle` class can get additional args. Theese are ` title: str="Bette
   * `title` is a string that will set be set as the title of the window
   * `geometry` is a string that will set the initial size of the window
   * `active_control` is a bool that manages if the buttons work or not. This can be changed after creating the object
+
+## `gui_input(type: str, title: str, prompt: str) -> (str | None)`
+Opens a small window where the user can do an input.
+### type
+Can be `str`, `int` or `float`
