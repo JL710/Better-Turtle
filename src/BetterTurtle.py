@@ -96,7 +96,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
             self.__entry = ttk.Entry(self.__root)
             self.__entry.focus()
             self.__submit = ttk.Button(self.__root, text="Confirm", command=self.on_submit)
-            self.__cancel = ttk.Button(self.__root, text="Calcel", command=self.on_cancel)
+            self.__cancel = ttk.Button(self.__root, text="Cancel", command=self.on_cancel)
 
             # grid widgets
             self.__label.grid(column=0, row=0, columnspan=2, sticky="nsew", padx=5, pady=5)
