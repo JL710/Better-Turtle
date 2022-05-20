@@ -83,7 +83,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
             self.__value = None
 
             # create rooot
-            self.__root = tkinter.Tk()
+            self.__root = tkinter.TopLevel()
             self.__root.title(title)
 
             # config columns and rows
@@ -126,7 +126,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
                     messagebox.showerror("Error", f'"{self.__entry.get()}" is not a float.')
 
         def run(self):
-            self.__root.mainloop()
+            self.__root.wait_window()
             return self.__value
 
     gui = Gui(type, title, prompt)
