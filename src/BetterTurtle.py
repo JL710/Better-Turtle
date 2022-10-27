@@ -83,7 +83,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
             self.__value = None
 
             # create rooot
-            self.__root = tkinter.Tk()
+            self.__root = tkinter.TopLevel()
             self.__root.title(title)
 
             # config columns and rows
@@ -96,7 +96,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
             self.__entry = ttk.Entry(self.__root)
             self.__entry.focus()
             self.__submit = ttk.Button(self.__root, text="Confirm", command=self.on_submit)
-            self.__cancel = ttk.Button(self.__root, text="Calcel", command=self.on_cancel)
+            self.__cancel = ttk.Button(self.__root, text="Cancel", command=self.on_cancel)
 
             # grid widgets
             self.__label.grid(column=0, row=0, columnspan=2, sticky="nsew", padx=5, pady=5)
@@ -126,7 +126,7 @@ def gui_input(type: str, title: str, prompt: str) -> str | None:
                     messagebox.showerror("Error", f'"{self.__entry.get()}" is not a float.')
 
         def run(self):
-            self.__root.mainloop()
+            self.__root.wait_window()
             return self.__value
 
     gui = Gui(type, title, prompt)
